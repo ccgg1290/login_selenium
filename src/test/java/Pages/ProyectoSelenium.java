@@ -12,7 +12,7 @@ public class ProyectoSelenium {
 
     WebDriver driver;
 
-    TestTask1 task;
+    TestTask task;
 
 
     @Test
@@ -20,11 +20,11 @@ public class ProyectoSelenium {
         //File file=new File("C:\\Users\\ccgualterosg\\Documents\\proyectos ejemplo\\Manejo-de-archivos-main\\src\\test\\resources\\prueba.txt");
         //String path =file.getAbsolutePath();
         Properties properties = System.getProperties();
-        System.out.println("antes: " + properties.getProperty("webdriver.driver"));
+        System.out.println("antessssss: " + properties.getProperty("webdriver.driver"));
         TestConfiguration conf = new TestConfiguration();
         driver=conf.WebDriverManager();
-        task=new TestTask1(driver);
-        task.taskLogin();
+       // task=new TestTask1(driver);
+       // task.taskLogin();
 
     }
 }

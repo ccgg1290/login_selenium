@@ -1,5 +1,7 @@
 package Pages;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,22 +16,15 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 
+
 @Slf4j
-public class TestTask1 {
-    public WebDriver driver;
+public class Login extends BasePage {
 
-    public TestTask1(WebDriver driver) {
-        this.driver = driver;
 
-    }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
 
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
+
+   //public WebDriver driver;
 
 
     @FindBy(id = "tbGrupoEmpresarial")
@@ -46,28 +41,21 @@ public class TestTask1 {
     private WebElement homePage;
     @FindBy(id = "dropMasterEmpresa")
     private WebElement banco;
-    @FindBy(linkText = "Consultas y Extractos")
-    private WebElement consutasYExtractos;
-    @FindBy(linkText = "Extracto por Producto")
-    private WebElement extractoPorProducto;
-    @FindBy(id = "cphCuerpo_ddlTipoProducto")
-    private WebElement listaDeProductos;
-    @FindBy(id = "cphCuerpo_ddlNombreProducto")
-    private WebElement tipoCuenta;
-    @FindBy(id = "cphCuerpo_btMostrarDatos")
-    private WebElement btnMostrarDatos;
-    @FindBy(id = "cphCuerpo_btDescargar")
-    private WebElement btnDescargar;
 
+    public Login() {
+        super(driver);
+    }
+    public void login() throws IOException, InterruptedException {
 
-    public WebDriver taskLogin() throws IOException, InterruptedException {
-
-
+        System.out.println("directorio por defecto:"+System.getProperty("download.default_directory"));
         PageFactory.initElements(driver, this);
         log.info("******************inicio*******************");
         //*********** LOGIN ****************
-        driver.get("https://test-www.bancofalabellaempresas.com.co/FrontOffice/Login.aspx");
+        navigateTo("https://test-www.bancofalabellaempresas.com.co/FrontOffice/Login.aspx");
         driver.navigate().refresh();
+        //esperar 20 segundos que aparezca el elemento,asi se que ya estoy en el home page del usuario
+       // Thread.sleep(10000);
+        //elementIsDisplayed(grupoEmpresarial);
         grupoEmpresarial.sendKeys("23534");
         Select objSelect = new Select(listaTipoDocumento);
         objSelect.selectByVisibleText("Cédula de Ciudadanía");
@@ -76,36 +64,23 @@ public class TestTask1 {
         token.sendKeys("123456");
         String oldTab = driver.getWindowHandle();
         driver.findElement(By.name("btInrgesar")).click();
-        Thread.sleep(20000);
+        //Thread.sleep(20000);
 
         ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
+        //driver.switchTo().window(newTab.get());
+        driver.close();
         System.out.println(newTab.size());
         driver.switchTo().window(newTab.get(1));
-
-        String HOME_PAGE = homePage.getText();
-        assertEquals(HOME_PAGE, "Dayana Andrea Rojas Alba");
+        //driver.switchTo().window(newTab.remove(0));
+        //espera 20 segundos
+        Thread.sleep(10000);
+        elementIsDisplayed(homePage);
+        String home_page = homePage.getText();
+        assertEquals(home_page, "Dayana Andrea Rojas Alba");
 
         Select empresa = new Select(banco);
         empresa.selectByVisibleText("FALABELLA DE COLOMBIA S.A");
+        //driver.quit();
 
-        Thread.sleep(5000);
-        consutasYExtractos.click();
-        extractoPorProducto.click();
-
-        Select listaTipoProducto = new Select(listaDeProductos);
-        listaTipoProducto.selectByVisibleText("CUENTA AHORROS BANCO FALABELLA");
-
-        Select listaNombreProducto = new Select(tipoCuenta);
-        listaNombreProducto.selectByVisibleText("116060084657");
-
-        btnMostrarDatos.click();
-        btnDescargar.click();
-        Thread.sleep(5000);
-
-        log.info("***** Fin ******");
-
-        driver.quit();
-
-        return driver;
     }
 }

@@ -16,23 +16,23 @@ import java.util.Map;
 import java.util.Properties;
 
 public class TestConfiguration {
+
+
 	public WebDriver driver;
-	
+
 	public WebDriver WebDriverManager() throws IOException {
 
-		// Edge
+
 		if(System.getProperty("webdriver.driver")==null){
-			System.out.println("ni modo");
-
+			System.out.println("Entramos a la configuracion");
+			System.setProperty("webdriver.driver","chrome");
 		}
-		//System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver.exe");
-		else if (System.getProperty("webdriver.driver").equalsIgnoreCase("edge")) {
+
+		// Edge
+		if (System.getProperty("webdriver.driver").equalsIgnoreCase("edge")) {
 			Properties propiedades = System.getProperties();
-			System.out.println("antes: " + propiedades.getProperty("webdriver.driver"));
-			System.out.println("Estas son las propiedades " + propiedades.get("webdriver.base.url"));
-
-
-			//WebDriverManager.edgedriver().setup();
+			//System.out.println("antes: " + propiedades.getProperty("webdriver.driver"));
+			//System.out.println("Estas son las propiedades " + propiedades.get("webdriver.base.url"));
 			EdgeOptions options = new EdgeOptions();
 			HashMap<String, Object> edgePrefs = new HashMap<>();
 			//edgePrefs.put("download.default_directory", Paths.get("C:\\Users\\ccgualterosg\\Documents\\proyecto_Automatizacion\\Proyectos probar\\login-selenium\\src\\test\\resources\\archivos").toAbsolutePath().toString());
@@ -47,8 +47,6 @@ public class TestConfiguration {
 			Properties propiedades = System.getProperties();
 			System.out.println("antes: " + propiedades.getProperty("webdriver.driver"));
 			System.out.println("Estas son las propiedades " + propiedades.get("webdriver.base.url"));
-
-			//WebDriverManager.firefoxdriver().setup();
 			System.out.println("mitad " + propiedades.getProperty("webdriver.driver"));
 			FirefoxOptions options = new FirefoxOptions();
 			options.addPreference("browser.link.open_newwindow", 3);
@@ -60,14 +58,10 @@ public class TestConfiguration {
 
 		}
 		else if (System.getProperty("webdriver.driver").equalsIgnoreCase("chrome")) {
-			//chrome
-			// System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver.exe");
 			Properties propiedades = System.getProperties();
 			System.out.println("antes: " + propiedades.getProperty("webdriver.driver"));
 			System.out.println("Estas son las propiedades " + propiedades.get("webdriver.base.url"));
 
-
-			//WebDriverManager.chromedriver().setup();
 			Map<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_setting.values.notifications", 2);
 			chromePrefs.put("profile.default_content_settings.popups", 0);
@@ -82,16 +76,6 @@ public class TestConfiguration {
 			options.addArguments("ignore-certificate-errors");
 			driver = new ChromeDriver(options);
 		}
-
-
-
-
-
-
-
-
-
-
 
 
 
