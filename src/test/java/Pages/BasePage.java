@@ -1,42 +1,45 @@
 package Pages;
 
+import Hooks.TestConfigurationBrowser;
+import Hooks.TestConfigurationEnvironment;
+import org.apache.logging.log4j.LogManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
+
+import static utils.ReturnDate.returnDate;
 
 
 public class BasePage {
     public static WebDriver driver;
+
+    //final static Logger logger1 = LoggerFactory.getLogger(BasePage.class);
+    //public final Logger logg= LoggerFactory.getLogger(String.valueOf(BasePage.class));
+    public final org.apache.logging.log4j.Logger logger = LogManager.getLogger(BasePage.class);
     private static Actions action;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+
+
+    WebDriverWait wait;
 
     static {
-        TestConfiguration conf = new TestConfiguration();
+        TestConfigurationBrowser conf = new TestConfigurationBrowser();
         try {
-            driver = conf.WebDriverManager();
+            driver = conf.webDriverManager();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
+
+
     }
 
     public BasePage(WebDriver driver) {
@@ -44,6 +47,10 @@ public class BasePage {
     }
 
     public void navigateTo(String url) {
+
+        if (url ==null) {
+            driver.quit();
+        }
         driver.get(url);
     }
 
@@ -52,63 +59,99 @@ public class BasePage {
         ;
     }
 
-    public void closeBrowser() {
+    public static void closeBrowser() {
         driver.quit();
     }
 
-    public WebElement Find(String locator) {
 
-        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+    //fluentWait
+    public WebElement Find(WebElement elemento,int duracion, int cadaCuanto) {
+        Wait<WebElement> fwait= new FluentWait<WebElement>(elemento)
+                .withTimeout(java.time.Duration.ofSeconds(duracion))
+                .pollingEvery(java.time.Duration.ofMillis(cadaCuanto))
+                .ignoring(NoSuchElementException.class);
+
+        boolean elementVisibly=fwait.until(WebElement::isDisplayed);
+        if(elementVisibly)
+            return elemento;
+        else
+            throw new NoSuchElementException();
+    }
+
+
+    //explicitwait
+    public WebElement Find(WebElement elemento) {
+
+
+        System.out.println("Hora inicio explicit: "+returnDate());
+        //explicit wait, cada elemento que utilice este metodo sera esperado el tiempo establecido
+        wait= new WebDriverWait(driver, Duration.ofSeconds(10));
+        System.out.println("Hora Final explicit: "+returnDate());
+        return wait.until(ExpectedConditions.visibilityOf(elemento));
         //return driver.findElement(By.xpath(locator));
     }
 
-    public void clickElement(String locator) {
-        Find(locator).click();
+
+    public WebElement Find(String locator) {
+
+        return driver.findElement(By.xpath(locator));
     }
 
-    public void submitElement(String locator) {
-        Find(locator).submit();
+
+
+    public void implicitWait(WebDriver driver) {
+
+        //implicit wait, todos los objetos deben esperar segun lo estabglezcamos aca
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(10));
     }
 
-    public void write(String locator, String textToWrite) {
-        Find(locator).clear();
-        Find(locator).sendKeys(textToWrite);
+    public void clickElement(WebElement elemento) {
+        Find(elemento).click();
     }
 
-    public int dropdownSize(String locator) {
-        Select dropdown = new Select(Find(locator));
+    public void submitElement(WebElement elemento) {
+        Find(elemento).submit();
+    }
+
+    public void write(WebElement elemento, String textToWrite) {
+        Find(elemento).clear();
+        Find(elemento).sendKeys(textToWrite);
+    }
+
+    public int dropdownSize(WebElement elemento) {
+        Select dropdown = new Select(Find(elemento));
         List<WebElement> dropdownOptions = dropdown.getOptions();
         return dropdownOptions.size();
     }
 
-    public void selectFromDropdownByValue(String locator, String valueToSelect) {
-        Select dropdown = new Select(Find(locator));
+    public void selectFromDropdownByValue(WebElement elemento, String valueToSelect) {
+        Select dropdown = new Select(Find(elemento));
 
         dropdown.selectByValue(valueToSelect);
     }
 
-    public void selectFromDropdownByIndex(String locator, int valueToSelect) {
-        Select dropdown = new Select(Find(locator));
+    public void selectFromDropdownByIndex(WebElement elemento, int valueToSelect) {
+        Select dropdown = new Select(Find(elemento));
 
         dropdown.selectByIndex(valueToSelect);
     }
 
-    public void selectFromDropdownByText(String locator, String valueToSelect) {
-        Select dropdown = new Select(Find(locator));
+    public void selectFromDropdownByText(WebElement elemento, String valueToSelect) {
+        Select dropdown = new Select(Find(elemento));
 
         dropdown.selectByVisibleText(valueToSelect);
     }
 
-    public void hoverOverElement(String locator) {
-        action.moveToElement(Find(locator));
+    public void hoverOverElement(WebElement elemento) {
+        action.moveToElement(Find(elemento));
     }
 
-    public void doubleClick(String locator) {
-        action.doubleClick(Find(locator));
+    public void doubleClick(WebElement elemento) {
+        action.doubleClick(Find(elemento));
     }
 
-    public void rightClick(String locator) {
-        action.contextClick(Find(locator));
+    public void rightClick(WebElement elemento) {
+        action.contextClick(Find(elemento));
     }
 
     public String getValueFromTable(String locator, int row, int column) {

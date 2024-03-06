@@ -1,4 +1,4 @@
-package Pages;
+package Hooks;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,12 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class TestConfiguration {
+public class TestConfigurationBrowser {
 
 
 	public WebDriver driver;
 
-	public WebDriver WebDriverManager() throws IOException {
+	public WebDriver webDriverManager() throws IOException {
 
 
 		if(System.getProperty("webdriver.driver")==null){

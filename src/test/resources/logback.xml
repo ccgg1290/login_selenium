@@ -1,0 +1,29 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] [%-5p] [%c{36}:%L] - %m%n
+                <!-- %d{ aaaa-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n -->
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>.\Logs\selenium.log</file>
+        <append>false</append>
+        <immediateFlush>true</immediateFlush>
+        <encoder>
+            <!--pattern>%d{HH:mm:ss.SSS} [%thread]  %-5level %logger{35} - %msg%n</pattern-->
+            <pattern>%d{HH:mm:ss.SSS} [%thread]  %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="root" level="INFO"/>
+
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>

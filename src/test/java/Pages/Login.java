@@ -9,10 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import Exception.EnvironmentNoFound;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static Hooks.TestConfigurationEnvironment.environmentManager;
 import static org.junit.Assert.assertEquals;
 
 
@@ -49,9 +51,16 @@ public class Login extends BasePage {
 
         System.out.println("directorio por defecto:"+System.getProperty("download.default_directory"));
         PageFactory.initElements(driver, this);
-        log.info("******************inicio*******************");
+
+        //logger1.info("pruebaaaaaaaaaaaaaaa");
+        log.info("****************** inicio Slf4j    *******************");
+        //logg.info("******************inicio Slf4j base page   *******************");
+        logger.info("******************inicio log4fj    *******************");
         //*********** LOGIN ****************
-        navigateTo("https://test-www.bancofalabellaempresas.com.co/FrontOffice/Login.aspx");
+        //navigateTo("https://test-www.bancofalabellaempresas.com.co/FrontOffice/Login.aspx");
+
+        navigateTo(environmentManager());
+
         driver.navigate().refresh();
         //esperar 20 segundos que aparezca el elemento,asi se que ya estoy en el home page del usuario
        // Thread.sleep(10000);
@@ -69,17 +78,21 @@ public class Login extends BasePage {
         ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
         //driver.switchTo().window(newTab.get());
         driver.close();
-        System.out.println(newTab.size());
+        System.out.println("numero de navegadores"+ newTab.size());
         driver.switchTo().window(newTab.get(1));
         //driver.switchTo().window(newTab.remove(0));
         //espera 20 segundos
-        Thread.sleep(10000);
-        elementIsDisplayed(homePage);
+        //Thread.sleep(10000);
+        Find(homePage);
+        Find(homePage,60,5);
         String home_page = homePage.getText();
         assertEquals(home_page, "Dayana Andrea Rojas Alba");
 
         Select empresa = new Select(banco);
         empresa.selectByVisibleText("FALABELLA DE COLOMBIA S.A");
+
+        //logg.info("****************** fin login Slf4j *******************");
+       // logger.info("****************** fin login  log4fj *******************");
         //driver.quit();
 
     }

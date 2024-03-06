@@ -38,7 +38,8 @@ public class ExtractoPorProducto extends BasePage{
 
 
         PageFactory.initElements(driver, this);
-        log.info("******************inicio Extracto por producto *******************");
+        log.info("******************inicio Extracto por producto Slf4j*******************");
+        //logger.info("******************inicio extracto log4fj*******************");
         //*********** LOGIN ****************
         consutasYExtractos.click();
         extractoPorProducto.click();
@@ -48,7 +49,8 @@ public class ExtractoPorProducto extends BasePage{
         listaNombreProducto.selectByVisibleText(data.get(0).get("Producto"));
         btnMostrarDatos.click();
         btnDescargar.click();
-        log.info("***** Fin Extracto por producto ******");
+        log.info("***** Fin Extracto por producto Sfl4j******");
+        //logger.info("******************fin  extracto log4fj*******************");
 
 
         //driver.close();

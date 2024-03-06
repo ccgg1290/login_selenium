@@ -1,6 +1,6 @@
 
 
-@ExtactosPorProducto
+#@ExtactosPorProducto
 Feature: Yo como cliente corporativo quiero descargar mi extracto de productos
 
 #*** 1 ****
@@ -20,7 +20,7 @@ Feature: Yo como cliente corporativo quiero descargar mi extracto de productos
 Examples:
 | TipoProducto                     |Producto     |Ano |Mes      |
 | CUENTA AHORROS BANCO FALABELLA   |116060084657 |2023|Diciembre|
-| CUENTA AHORROS BANCO FALABELLA   |116060084657 |2023|Diciembre|
+#| CUENTA AHORROS BANCO FALABELLA   |116060084657 |2023|Diciembre|
 
 
 
