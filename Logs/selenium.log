@@ -1,2 +1,34 @@
-23:02:39.952 [pool-3-thread-1]  INFO  Pages.Login - ****************** inicio Slf4j    *******************
-23:02:39.982 [pool-3-thread-1]  INFO  Hooks.TestConfigurationEnvironment - abriremos ambiente por defecto
+20:13:03.580 [pool-3-thread-1]  INFO  Steps.Step - -------------- Inicio Test ----------------
+20:13:03.642 [pool-3-thread-1]  INFO  Hooks.TestConfigurationEnvironment - abriremos ambiente por defecto
+20:13:05.397 [pool-3-thread-1]  INFO  Pages.BasePage - Browser abrierto en la url : https://test-www.bancofalabellaempresas.com.co/FrontOffice/Login.aspx
+20:13:06.213 [pool-3-thread-1]  INFO  Pages.BasePage - Refresh Browser
+20:13:06.297 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id tbGrupoEmpresarial esta visibleeee
+20:13:06.392 [pool-3-thread-1]  INFO  Pages.BasePage - Se ingresa 23534 en elemento con ID tbGrupoEmpresarial
+20:13:06.557 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id tbNumeroID esta visibleeee
+20:13:06.648 [pool-3-thread-1]  INFO  Pages.BasePage - Se ingresa 1014224787 en elemento con ID tbNumeroID
+20:13:06.712 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id tbClavePersonal esta visibleeee
+20:13:06.800 [pool-3-thread-1]  INFO  Pages.BasePage - Se ingresa 976431 en elemento con ID tbClavePersonal
+20:13:06.861 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id tbToken esta visibleeee
+20:13:06.955 [pool-3-thread-1]  INFO  Pages.BasePage - Se ingresa 123456 en elemento con ID tbToken
+20:13:07.012 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id btInrgesar esta visibleeee
+20:13:08.235 [pool-3-thread-1]  INFO  Pages.BasePage - Click Elemento con id btInrgesar
+20:13:08.314 [pool-3-thread-1]  INFO  Interactions.WindowsManager - Se selecciona nueva ventana del navegador
+20:13:13.083 [pool-3-thread-1]  INFO  Pages.BasePage - Se selecciona el item: FALABELLA DE COLOMBIA S.A En el dropdown: Header_ClientCompanies
+20:13:13.088 [pool-3-thread-1]  INFO  Steps.Step - -------------- Fin Test ----------------
+20:13:17.394 [pool-3-thread-1]  INFO  Steps.Step - -------------- Inicio Test ----------------
+20:13:17.396 [pool-3-thread-1]  INFO  Hooks.TestConfigurationEnvironment - abriremos ambiente por defecto
+20:13:19.408 [pool-3-thread-1]  INFO  Pages.BasePage - Browser abrierto en la url : https://test-www.bancofalabellaempresas.com.co/FrontOffice/Login.aspx
+20:13:20.046 [pool-3-thread-1]  INFO  Pages.BasePage - Refresh Browser
+20:13:20.108 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id tbGrupoEmpresarial esta visibleeee
+20:13:20.200 [pool-3-thread-1]  INFO  Pages.BasePage - Se ingresa 23534 en elemento con ID tbGrupoEmpresarial
+20:13:20.356 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id tbNumeroID esta visibleeee
+20:13:20.444 [pool-3-thread-1]  INFO  Pages.BasePage - Se ingresa 1049653007 en elemento con ID tbNumeroID
+20:13:20.494 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id tbClavePersonal esta visibleeee
+20:13:20.584 [pool-3-thread-1]  INFO  Pages.BasePage - Se ingresa 976431 en elemento con ID tbClavePersonal
+20:13:20.640 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id tbToken esta visibleeee
+20:13:20.729 [pool-3-thread-1]  INFO  Pages.BasePage - Se ingresa 123456 en elemento con ID tbToken
+20:13:20.781 [pool-3-thread-1]  INFO  Pages.BasePage - Elemento con id btInrgesar esta visibleeee
+20:13:22.205 [pool-3-thread-1]  INFO  Pages.BasePage - Click Elemento con id btInrgesar
+20:13:22.282 [pool-3-thread-1]  INFO  Interactions.WindowsManager - Se selecciona nueva ventana del navegador
+20:13:31.782 [pool-3-thread-1]  INFO  Pages.BasePage - Se selecciona el item: FALABELLA DE COLOMBIA S.A En el dropdown: Header_ClientCompanies
+20:13:31.785 [pool-3-thread-1]  INFO  Steps.Step - -------------- Fin Test ----------------

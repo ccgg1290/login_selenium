@@ -1,4 +1,4 @@
 $(document).ready(function() {
-CucumberHTML.timelineItems.pushArray([{"id":"c45bd4e1-d1d5-45b8-970a-33d5298e8489","feature":"Yo como cliente corporativo quiero descargar mi extracto de productos","scenario":"Cliente descarga su extracto con exito","start":1710302553310,"group":19,"content":"","tags":"@descargarpdf,","end":1710302562054,"className":"failed"}]);
+CucumberHTML.timelineItems.pushArray([{"id":"83bf171e-b115-4fec-b348-c4b59f2e91e8","feature":"Yo como cliente corporativo quiero descargar mi extracto de productos","scenario":"Cliente descarga su extracto con exito2","start":1725757994058,"group":19,"content":"","tags":"@extactosporproducto,@descargarpdf2,","end":1725758012809,"className":"passed"},{"id":"114c7dbb-2866-4166-b942-512cf2c91e52","feature":"Yo como cliente corporativo quiero descargar mi extracto de productos","scenario":"Cliente descarga su extracto con exito","start":1725757978342,"group":19,"content":"","tags":"@extactosporproducto,@descargarpdf,","end":1725757994054,"className":"passed"}]);
 CucumberHTML.timelineGroups.pushArray([{"id":19,"content":"Thread[pool-3-thread-1,5,main]"}]);
 });

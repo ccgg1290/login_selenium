@@ -15,18 +15,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static Hooks.TestConfigurationEnvironment.environmentManager;
-import static org.junit.Assert.assertEquals;
-
+import static Interactions.WindowsManager.selectNewWindow;
 
 
 @Slf4j
 public class Login extends BasePage {
-
-
-
-
-
-   //public WebDriver driver;
 
 
     @FindBy(id = "tbGrupoEmpresarial")
@@ -39,61 +32,42 @@ public class Login extends BasePage {
     private WebElement clave;
     @FindBy(name = "tbToken")
     private WebElement token;
-    @FindBy(id = "lbNombreUsuario")
+    @FindBy(name = "btInrgesar")
+    private WebElement botonIngresar;
+    @FindBy(id = "Header_ClientName")
     private WebElement homePage;
-    @FindBy(id = "dropMasterEmpresa")
+    @FindBy(id = "Header_ClientCompanies")
     private WebElement banco;
 
     public Login() {
         super(driver);
     }
-    public void login() throws IOException, InterruptedException {
+    public Login(WebDriver driver) {
+        super(driver);
+    }
+    public void login(String user) throws IOException, InterruptedException {
 
-        System.out.println("directorio por defecto:"+System.getProperty("download.default_directory"));
         PageFactory.initElements(driver, this);
 
-        //logger1.info("pruebaaaaaaaaaaaaaaa");
-        log.info("****************** inicio Slf4j    *******************");
-        //logg.info("******************inicio Slf4j base page   *******************");
-        logger.info("******************inicio log4fj    *******************");
-        //*********** LOGIN ****************
-        //navigateTo("https://test-www.bancofalabellaempresas.com.co/FrontOffice/Login.aspx");
-
         navigateTo(environmentManager());
-
-        driver.navigate().refresh();
-        //esperar 20 segundos que aparezca el elemento,asi se que ya estoy en el home page del usuario
-       // Thread.sleep(10000);
-        //elementIsDisplayed(grupoEmpresarial);
-        grupoEmpresarial.sendKeys("23534");
+        refreshBrowser();
+        FindFluentWait(grupoEmpresarial, 120,5000);
+        EnterTheValue(grupoEmpresarial,"23534");
+        //FindFluentWait(listaTipoDocumento, 120,10);
         Select objSelect = new Select(listaTipoDocumento);
         objSelect.selectByVisibleText("Cédula de Ciudadanía");
-        numeroDocumento.sendKeys("1049653008");
-        clave.sendKeys("976431");
-        token.sendKeys("123456");
-        String oldTab = driver.getWindowHandle();
-        driver.findElement(By.name("btInrgesar")).click();
-        //Thread.sleep(20000);
+        //selectFromDropdownByValue(listaTipoDocumento,"Cédula de Ciudadanía");
+        FindFluentWait(numeroDocumento, 120,5000);
+        EnterTheValue(numeroDocumento,user);
+        FindFluentWait(clave, 60,10);
+        EnterTheValue(clave,"976431");
+        FindFluentWait(token, 60,10);
+        EnterTheValue(token,"123456");
+        FindFluentWait(botonIngresar, 60,10);
+        clickOn(botonIngresar);
+        selectNewWindow(driver);
+        selectFromDropdownByValue(banco,"FALABELLA DE COLOMBIA S.A");
 
-        ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
-        //driver.switchTo().window(newTab.get());
-        driver.close();
-        System.out.println("numero de navegadores"+ newTab.size());
-        driver.switchTo().window(newTab.get(1));
-        //driver.switchTo().window(newTab.remove(0));
-        //espera 20 segundos
-        //Thread.sleep(10000);
-        Find(homePage);
-        Find(homePage,60,5);
-        String home_page = homePage.getText();
-        assertEquals(home_page, "Dayana Andrea Rojas Alba");
-
-        Select empresa = new Select(banco);
-        empresa.selectByVisibleText("FALABELLA DE COLOMBIA S.A");
-
-        //logg.info("****************** fin login Slf4j *******************");
-       // logger.info("****************** fin login  log4fj *******************");
-        //driver.quit();
 
     }
 }

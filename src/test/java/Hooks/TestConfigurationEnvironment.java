@@ -27,7 +27,7 @@ public class TestConfigurationEnvironment {
 
 		if (System.getProperty("ambiente") == null) {
 			log.info("abriremos ambiente por defecto");
-			ambiente= "https://www.google.com";
+			ambiente= "https://test-www.bancofalabellaempresas.com.co/FrontOffice/Login.aspx";
 		}
 		else if (System.getProperty("ambiente").equalsIgnoreCase("QA")) {
 			log.info("abriremos ambiente QA");

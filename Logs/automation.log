@@ -2,3 +2,7 @@
 2024-03-12T22:48:15,049 [pool-3-thread-1] INFO  (Login.java:58) - ******************inicio log4fj    *******************
 2024-03-12T22:49:12,759 [pool-3-thread-1] INFO  (Login.java:58) - ******************inicio log4fj    *******************
 2024-03-12T23:02:39,974 [pool-3-thread-1] INFO  (Login.java:58) - ******************inicio log4fj    *******************
+2024-09-07T19:35:47,763 [pool-3-thread-1] INFO  (Login.java:58) - ******************inicio log4fj    *******************
+2024-09-07T19:51:04,260 [pool-3-thread-1] INFO  (Login.java:58) - ******************inicio log4fj    *******************
+2024-09-07T20:03:05,590 [pool-3-thread-1] INFO  (Login.java:58) - ******************inicio log4fj    *******************
+2024-09-07T20:04:36,545 [pool-3-thread-1] INFO  (Login.java:57) - ******************inicio log4fj    *******************

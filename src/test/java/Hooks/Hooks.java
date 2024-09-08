@@ -8,15 +8,14 @@ import io.cucumber.java.Scenario;
 import org.junit.AfterClass;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
+import static Pages.BasePage.driver;
+
 
 public class Hooks extends BasePage {
-
-
-    Login login = new Login();
-    ;
 
     public Hooks() {
         super(driver);
@@ -25,9 +24,9 @@ public class Hooks extends BasePage {
 
     @Before
     public void antes() throws IOException, InterruptedException {
+        TestConfigurationBrowser conf = new TestConfigurationBrowser();
+        driver=conf.webDriverManager();
 
-
-        login.login();
     }
 
     @After
@@ -39,13 +38,9 @@ public class Hooks extends BasePage {
             scenario.attach(screenshot, "image/png", "Screenshot of the error");
             System.out.println("finalizamos");
 
-
         }
 
-        // driver.quit();
-        //driver=null;
-
-
+        driver.quit();
     }
 
 
